@@ -1,7 +1,5 @@
-import {ReactNative, NativeModules, DeviceEventEmitter} from 'react-native';
+import { NativeModules } from 'react-native';
 
-class ReactNativeEasyBluetooth {
-  
-}
+const ReactNativeEasyBluetooth = NativeModules.ReactNativeEasyBluetooth;
 
 export default ReactNativeEasyBluetooth;

@@ -12,7 +12,33 @@ import {
   View
 } from 'react-native';
 
+import ReactNativeEasyBluetooth from 'react-native-easy-bluetooth';
+
 export default class BluetoothExampleProject extends Component {
+
+  constructor(props) {
+    super(props);
+    console.log("aqui " + new Date());
+    console.log(ReactNativeEasyBluetooth);
+
+    var config = {
+      "uuid" : "35111C00001101-0000-1000-8000-00805F9B34FB",
+      "deviceName": "Teste React Native",
+      "bufferSize": 1024,
+      "characterDelimiter": "\n"
+    }
+
+    ReactNativeEasyBluetooth.config(config);
+
+    ReactNativeEasyBluetooth.startScan(function() {
+      console.log("onStart")
+    },function() {
+      console.log("onStop")
+    },function(address, name, index) {
+      console.log("onDeviceDiscovered " + address + " - " + name);
+    });
+  }
+
   render() {
     return (
       <View style={styles.container}>
