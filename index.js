@@ -1,10 +1,7 @@
-import {
-  AppRegistry,
-  StyleSheet,
-  Text,
-  View
-} from 'react-native';
+import {ReactNative, NativeModules, DeviceEventEmitter} from 'react-native';
 
-export default class ReactNativeEasyBluetooth {
+class ReactNativeEasyBluetooth {
   
 }
+
+export default ReactNativeEasyBluetooth;
