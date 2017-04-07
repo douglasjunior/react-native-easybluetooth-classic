@@ -28,7 +28,7 @@ public class ReactNativeEasyBluetoothModule extends ReactContextBaseJavaModule {
 
     @ReactMethod
     public void config(ReadableMap config){
-         
+
         BluetoothService.BluetoothConfiguration bluetoothConfig = new BluetoothService.BluetoothConfiguration();
         bluetoothConfig.context = getReactApplicationContext();
         bluetoothConfig.bluetoothServiceClass = BluetoothClassicService.class;
@@ -59,6 +59,7 @@ public class ReactNativeEasyBluetoothModule extends ReactContextBaseJavaModule {
                 callbackOnStop.invoke();
             }
         });
+        mService.startScan();
     }
 
 
