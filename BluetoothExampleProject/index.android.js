@@ -22,15 +22,22 @@ export default class BluetoothExampleProject extends Component {
     console.log(ReactNativeEasyBluetooth);
 
     var config = {
-      "uuid" : "35111C00001101-0000-1000-8000-00805F9B34FB",
-      "deviceName": "Teste React Native",
+      "uuid": "35111C00001101-0000-1000-8000-00805F9B34FB",
+      "deviceName": "Bluetooth Example Project",
       "bufferSize": 1024,
       "characterDelimiter": "\n"
     }
 
     ReactNativeEasyBluetooth.config(config);
 
-    ReactNativeEasyBluetooth.startScan(this.onScanCallback);
+    ReactNativeEasyBluetooth.startScan()
+      .then(function (devices) {
+        console.log("devices encontrados");
+        console.log(devices);
+      })
+      .catch(function (ex) {
+        console.warn(ex);
+      });
   }
 
   onScanCallback(action, address, name, index) {

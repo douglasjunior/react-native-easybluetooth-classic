@@ -3,11 +3,13 @@ package io.github.douglasjunior.ReactNativeEasyBluetooth;
 import android.bluetooth.BluetoothDevice;
 import android.util.Log;
 
-import com.facebook.react.bridge.Callback;
+import com.facebook.react.bridge.Promise;
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
 import com.facebook.react.bridge.ReadableMap;
+import com.facebook.react.bridge.WritableNativeArray;
+import com.facebook.react.bridge.WritableNativeMap;
 import com.github.douglasjunior.bluetoothclassiclibrary.BluetoothClassicService;
 import com.github.douglasjunior.bluetoothclassiclibrary.BluetoothService;
 
@@ -37,32 +39,38 @@ public class ReactNativeEasyBluetoothModule extends ReactContextBaseJavaModule {
         bluetoothConfig.characterDelimiter = config.getString("characterDelimiter").charAt(0);
         bluetoothConfig.bufferSize = config.getInt("bufferSize");
         bluetoothConfig.uuid = UUID.fromString(config.getString("uuid"));
+        bluetoothConfig.callListenersInMainThread = false;
 
         BluetoothService.setDefaultConfiguration(bluetoothConfig);
         mService = BluetoothService.getDefaultInstance();
     }
 
     @ReactMethod
-    public void startScan(final Callback callback) {
-        Log.d(TAG, "callback: " + callback);
+    public void startScan(final Promise devicesDiscovered) {
+        Log.d(TAG, "devicesDiscovered: " + devicesDiscovered);
 
         mService.setOnScanCallback(new BluetoothService.OnBluetoothScanCallback() {
+
+            WritableNativeArray devices = new WritableNativeArray();
+
             @Override
             public void onDeviceDiscovered(BluetoothDevice bluetoothDevice, int i) {
-                if (callback != null)
-                    callback.invoke("onDeviceDiscovered", bluetoothDevice.getAddress(), bluetoothDevice.getName(), i);
+                Log.d(TAG, "onDeviceDiscovered: " + bluetoothDevice.getAddress() + " - " + bluetoothDevice.getName());
+                WritableNativeMap device = new WritableNativeMap();
+                device.putString("address", bluetoothDevice.getAddress());
+                device.putString("name", bluetoothDevice.getName());
+                devices.pushMap(device);
             }
 
             @Override
             public void onStartScan() {
-                if (callback != null)
-                    callback.invoke("onStartScan");
+                Log.d(TAG, "onStartScan");
             }
 
             @Override
             public void onStopScan() {
-                if (callback != null)
-                    callback.invoke("onStopScan");
+                Log.d(TAG, "onStopScan");
+                devicesDiscovered.resolve(devices);
             }
         });
         mService.startScan();
