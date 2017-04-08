@@ -1,6 +1,7 @@
 package io.github.douglasjunior.ReactNativeEasyBluetooth;
 
 import android.bluetooth.BluetoothDevice;
+import android.util.Log;
 
 import com.facebook.react.bridge.Callback;
 import com.facebook.react.bridge.ReactApplicationContext;
@@ -27,7 +28,7 @@ public class ReactNativeEasyBluetoothModule extends ReactContextBaseJavaModule {
     }
 
     @ReactMethod
-    public void config(ReadableMap config){
+    public void config(ReadableMap config) {
 
         BluetoothService.BluetoothConfiguration bluetoothConfig = new BluetoothService.BluetoothConfiguration();
         bluetoothConfig.context = getReactApplicationContext();
@@ -42,21 +43,26 @@ public class ReactNativeEasyBluetoothModule extends ReactContextBaseJavaModule {
     }
 
     @ReactMethod
-    public void startScan(final Callback callbackOnStart, final Callback callbackOnStop, final Callback callbackOnDeviceDiscovered){
+    public void startScan(final Callback callback) {
+        Log.d(TAG, "callback: " + callback);
+
         mService.setOnScanCallback(new BluetoothService.OnBluetoothScanCallback() {
             @Override
             public void onDeviceDiscovered(BluetoothDevice bluetoothDevice, int i) {
-                callbackOnDeviceDiscovered.invoke(bluetoothDevice.getAddress(), bluetoothDevice.getName(), i);
+                if (callback != null)
+                    callback.invoke("onDeviceDiscovered", bluetoothDevice.getAddress(), bluetoothDevice.getName(), i);
             }
 
             @Override
             public void onStartScan() {
-                callbackOnStart.invoke();
+                if (callback != null)
+                    callback.invoke("onStartScan");
             }
 
             @Override
             public void onStopScan() {
-                callbackOnStop.invoke();
+                if (callback != null)
+                    callback.invoke("onStopScan");
             }
         });
         mService.startScan();

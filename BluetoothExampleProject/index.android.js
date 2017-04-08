@@ -30,13 +30,11 @@ export default class BluetoothExampleProject extends Component {
 
     ReactNativeEasyBluetooth.config(config);
 
-    ReactNativeEasyBluetooth.startScan(function() {
-      console.log("onStart")
-    },function() {
-      console.log("onStop")
-    },function(address, name, index) {
-      console.log("onDeviceDiscovered " + address + " - " + name);
-    });
+    ReactNativeEasyBluetooth.startScan(this.onScanCallback);
+  }
+
+  onScanCallback(action, address, name, index) {
+    console.log("onScanCallback " + action + ": " + address + " - " + name);
   }
 
   render() {
