@@ -1,4 +1,4 @@
-package io.github.douglasjunior.ReactNativeEasyBluetooth;
+package io.github.douglasjunior.ReactNativeEasyBluetooth.classic;
 
 import com.facebook.react.ReactPackage;
 import com.facebook.react.bridge.JavaScriptModule;

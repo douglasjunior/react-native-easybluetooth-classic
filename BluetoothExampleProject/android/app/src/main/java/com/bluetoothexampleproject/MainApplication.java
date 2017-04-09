@@ -11,7 +11,7 @@ import com.facebook.soloader.SoLoader;
 import java.util.Arrays;
 import java.util.List;
 
-import io.github.douglasjunior.ReactNativeEasyBluetooth.ReactNativeEasyBluetoothPackage;
+import io.github.douglasjunior.ReactNativeEasyBluetooth.classic.ReactNativeEasyBluetoothPackage;
 
 public class MainApplication extends Application implements ReactApplication {
 

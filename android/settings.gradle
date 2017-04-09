@@ -1,1 +1,1 @@
-include ':classic', ':ble'
+include ':react-native-easy-bluetooth-classic', ':react-native-easy-bluetooth-ble', ':react-native-easy-bluetooth-core'
