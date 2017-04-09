@@ -25,7 +25,7 @@ An React-Native wrapper for [AndroidBluetoothLibrary](https://github.com/douglas
 - [ ] Check bluetooth enabled
 - [ ] Enable bluetooth device
 
-Bluetooth LE
+#### Bluetooth LE
 - [ ] Scan bluetooth device
 - [ ] Connect to a bluetooth device
 - [ ] Write bytes to a bluetooth device
@@ -41,12 +41,9 @@ Soon ...
 
 ## Contribute
 
-New features, bug fixes and improvements in the translation are welcome! For questions and suggestions use the [issues](https://github.com/douglasjunior/android-simple-tooltip/issues).
+New features, bug fixes and improvements in the translation are welcome! 
 
-Before submit your PR, run the gradle check.
-```bash
-./gradlew build connectedCheck
-```
+For questions and suggestions use the [issues](https://github.com/douglasjunior/react-native-easy-bluetooth/issues).
 
 ## Donate
 
@@ -57,8 +54,8 @@ Before submit your PR, run the gradle check.
 ```
 The MIT License (MIT)
 
-Copyright (c) 2016 Douglas Nassif Roma Junior
+Copyright (c) 2017 Douglas Nassif Roma Junior
 ```
 
-See the full [licence file](https://github.com/douglasjunior/android-simple-tooltip/blob/master/LICENSE).
+See the full [licence file](https://github.com/douglasjunior/react-native-easy-bluetooth/blob/master/LICENSE).
 
