@@ -28,7 +28,5 @@ repositories {
 dependencies {
     compile 'com.facebook.react:react-native:+'
     compile project(":react-native-easy-bluetooth-core")
-    compile('com.github.douglasjunior.AndroidBluetoothLibrary:BluetoothLowEnergyLibrary:master-SNAPSHOT') {
-        changing = true // Gradle will then check for updates every 24 hours
-    }
+    compile 'com.github.douglasjunior.AndroidBluetoothLibrary:BluetoothLowEnergyLibrary:0.2.5'
 }

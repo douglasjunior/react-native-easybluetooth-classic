@@ -27,7 +27,5 @@ repositories {
 
 dependencies {
     compile 'com.facebook.react:react-native:+'
-    compile('com.github.douglasjunior.AndroidBluetoothLibrary:BluetoothClassicLibrary:master-SNAPSHOT') {
-        changing = true // Gradle will then check for updates every 24 hours
-    }
+    compile 'com.github.douglasjunior.AndroidBluetoothLibrary:BluetoothClassicLibrary:0.2.5'
 }
