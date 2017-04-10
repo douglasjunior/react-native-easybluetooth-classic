@@ -31,13 +31,20 @@ An React-Native wrapper for [AndroidBluetoothLibrary](https://github.com/douglas
 - [ ] Write bytes to a bluetooth device
 - [ ] Read bytes from a bluetooth device
 
+## Install
+
+From [npmjs](https://www.npmjs.com/package/react-native-easy-bluetooth):
+
+```bash
+npm i -s react-native-easy-bluetooth
+```
+
+Soon ...
+
 ## Usage
 
 Soon ...
 
-## Install
-
-Soon ...
 
 ## Contribute
 
