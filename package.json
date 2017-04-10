@@ -1,14 +1,30 @@
 {
 	"name": "react-native-easy-bluetooth",
 	"version": "0.0.1",
-	"private": true,
+	"description": "An React-Native wrapper for AndroidBluetoothLibrary <https://github.com/douglasjunior/AndroidBluetoothLibrary>",
+	"private": false,
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/douglasjunior/react-native-easy-bluetooth.git"
+	},
+	"keywords": [
+		"react-native",
+		"android",
+		"ios",
+		"bluetooth"
+	],
+	"author": "Douglas Nassif Roma Junior",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/douglasjunior/react-native-easy-bluetooth/issues"
+	},
+	"homepage": "https://github.com/douglasjunior/react-native-easy-bluetooth",
+	"main": "index.js",
 	"scripts": {
 		"start": "node node_modules/react-native/local-cli/cli.js start",
 		"test": "jest"
 	},
-	"dependencies": {
-
-	},
+	"dependencies": {},
 	"devDependencies": {
 		"babel-jest": "19.0.0",
 		"babel-preset-react-native": "1.9.1",

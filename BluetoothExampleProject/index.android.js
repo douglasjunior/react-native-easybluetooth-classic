@@ -1,6 +1,6 @@
 /**
- * Sample React Native App
- * https://github.com/facebook/react-native
+ * Sample Bluetooth Example Project
+ * https://github.com/douglasjunior/react-native-easy-bluetooth
  * @flow
  */
 
@@ -22,7 +22,7 @@ export default class BluetoothExampleProject extends Component {
 
   constructor(props) {
     super(props);
-    console.log("aqui " + new Date());
+
     console.log(ReactNativeEasyBluetooth);
 
     let ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
@@ -34,6 +34,7 @@ export default class BluetoothExampleProject extends Component {
 
     ReactNativeEasyBluetooth.addOnDeviceFoundListener(this.onDeviceFound.bind(this));
     ReactNativeEasyBluetooth.addOnStatusChangeListener(this.onStatusChange.bind(this));
+    ReactNativeEasyBluetooth.addOnDataReadListener(this.onDataRead.bind(this));
 
     var config = {
       "uuid": "35111C00001101-0000-1000-8000-00805F9B34FB",
@@ -44,12 +45,12 @@ export default class BluetoothExampleProject extends Component {
 
     ReactNativeEasyBluetooth.config(config)
       .then(function (config) {
-        console.log("configurado:");
+        console.log("config:");
         console.log(config);
         return ReactNativeEasyBluetooth.startScan();
       })
       .then(function (devices) {
-        console.log("devices encontrados:");
+        console.log("all devices found:");
         console.log(devices);
       })
       .catch(function (ex) {
@@ -83,17 +84,32 @@ export default class BluetoothExampleProject extends Component {
     console.log(status);
   }
 
+  onDataRead(data) {
+    console.log("onDataRead");
+    console.log(data);
+  }
+
   onDeviceClick(device, index) {
     ReactNativeEasyBluetooth.stopScan()
       .then(() => {
         return ReactNativeEasyBluetooth.connect(device);
       })
       .then(() => {
-        console.log("Conectando a " + device);
+        console.log("Connecting to " + device);
       })
       .catch((ex) => {
         console.warn(ex);
       })
+  }
+
+  onWriteClick() {
+    ReactNativeEasyBluetooth.writeln("Works in React Native!\n\n")
+    .then(() => {
+      console.log("Writing...")
+    })
+    .catch((ex) => {
+      console.warn(ex);
+    })
   }
 
   renderListView() {
@@ -128,6 +144,11 @@ export default class BluetoothExampleProject extends Component {
         <Text>Devices found:</Text>
 
         {this.renderListView()}
+        <TouchableHighlight onPress={() => {
+          this.onWriteClick()
+        }}>
+          <Text>Escrever</Text>
+        </TouchableHighlight>
       </View>
     );
   }

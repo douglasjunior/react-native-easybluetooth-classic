@@ -3,6 +3,13 @@ rootProject.name = 'BluetoothExampleProject'
 include ':app'
 
 /* =========================
+  INCLUDING BLUETOOTH CORE
+ =========================== */
+
+include ':react-native-easy-bluetooth-core'
+project(':react-native-easy-bluetooth-core').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-easy-bluetooth/android/react-native-easy-bluetooth-core')
+
+/* =========================
   INCLUDING BLUETOOTH CLASSIC
  =========================== */
 include ':react-native-easy-bluetooth'
@@ -14,11 +21,4 @@ project(':react-native-easy-bluetooth').projectDir = new File(rootProject.projec
 
 // include ':react-native-easy-bluetooth'
 // project(':react-native-easy-bluetooth').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-easy-bluetooth/android/react-native-easy-ble')
-
-/* =========================
-  INCLUDING BLUETOOTH CORE
- =========================== */
-
-include ':react-native-easy-bluetooth-core'
-project(':react-native-easy-bluetooth-core').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-easy-bluetooth/android/react-native-easy-bluetooth-core')
 

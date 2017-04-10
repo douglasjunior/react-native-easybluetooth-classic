@@ -136,7 +136,7 @@ public class CoreModule extends ReactContextBaseJavaModule implements BluetoothS
         Log.d(TAG, "getStatus: " + promise);
         if (!validateServiceConfig(promise)) return;
 
-        promise.resolve(mService.getStatus());
+        promise.resolve(mService.getStatus().name());
     }
 
     public void write(String data, Promise promise) {

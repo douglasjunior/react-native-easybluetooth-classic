@@ -9,16 +9,16 @@ An React-Native wrapper for [AndroidBluetoothLibrary](https://github.com/douglas
 - [x] Enable bluetooth device
 
 #### Bluetooth Classic
-- [x] Scan bluetooth device
+- [x] Scan bluetooth devices
 - [x] Connect to a bluetooth device
 - [x] Write bytes to a bluetooth device
 - [x] Read bytes from a bluetooth device
 
 #### Bluetooth LE
-- [ ] Scan bluetooth device
-- [ ] Connect to a bluetooth device
-- [ ] Write bytes to a bluetooth device
-- [ ] Read bytes from a bluetooth device
+- [x] Scan bluetooth devices
+- [x] Connect to a bluetooth device
+- [x] Write bytes to a bluetooth device
+- [x] Read bytes from a bluetooth device
 
 ### iOS
 
@@ -26,7 +26,7 @@ An React-Native wrapper for [AndroidBluetoothLibrary](https://github.com/douglas
 - [ ] Enable bluetooth device
 
 #### Bluetooth LE
-- [ ] Scan bluetooth device
+- [ ] Scan bluetooth devices
 - [ ] Connect to a bluetooth device
 - [ ] Write bytes to a bluetooth device
 - [ ] Read bytes from a bluetooth device
