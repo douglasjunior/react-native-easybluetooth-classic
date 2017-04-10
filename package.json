@@ -1,6 +1,6 @@
 {
 	"name": "react-native-easy-bluetooth",
-	"version": "0.0.1",
+	"version": "0.0.2",
 	"description": "An React-Native wrapper for AndroidBluetoothLibrary <https://github.com/douglasjunior/AndroidBluetoothLibrary>",
 	"private": false,
 	"repository": {
