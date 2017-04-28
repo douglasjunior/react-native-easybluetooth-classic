@@ -43,7 +43,7 @@ export default class BluetoothExampleProject extends Component {
       "characterDelimiter": "\n"
     }
 
-    ReactNativeEasyBluetooth.config(config)
+    ReactNativeEasyBluetooth.init(config)
       .then(function (config) {
         console.log("config:");
         console.log(config);

@@ -28,5 +28,5 @@ repositories {
 dependencies {
     compile 'com.facebook.react:react-native:+'
     compile project(":react-native-easy-bluetooth-core")
-    compile 'com.github.douglasjunior.AndroidBluetoothLibrary:BluetoothLowEnergyLibrary:0.2.5'
+    compile 'com.github.douglasjunior.AndroidBluetoothLibrary:BluetoothLowEnergyLibrary:0.3.0'
 }

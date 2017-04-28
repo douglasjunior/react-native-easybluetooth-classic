@@ -17,8 +17,8 @@ public class ReactNativeEasyBluetoothModule extends CoreModule {
 
     @ReactMethod
     @Override
-    public void config(ReadableMap config, Promise promise) {
-        super.config(config, promise);
+    public void init(ReadableMap config, Promise promise) {
+        super.init(config, promise);
     }
 
     @ReactMethod
@@ -35,7 +35,13 @@ public class ReactNativeEasyBluetoothModule extends CoreModule {
 
     @ReactMethod
     @Override
-    public void connect(ReadableMap device, Promise promise) {
+    public void getStatus(Promise promise) {
+        super.getStatus(promise);
+    }
+
+    @ReactMethod
+    @Override
+    public void connect(ReadableMap device, Promise promise) throws InterruptedException {
         super.connect(device, promise);
     }
 
