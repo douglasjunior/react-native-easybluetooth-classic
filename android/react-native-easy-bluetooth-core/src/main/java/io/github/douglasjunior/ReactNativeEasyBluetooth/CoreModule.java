@@ -5,6 +5,7 @@ import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothManager;
 import android.content.Context;
 import android.os.Build;
+import android.os.ParcelUuid;
 import android.util.Log;
 
 import com.facebook.react.bridge.Promise;
@@ -12,9 +13,11 @@ import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReadableArray;
 import com.facebook.react.bridge.ReadableMap;
+import com.facebook.react.bridge.WritableArray;
 import com.facebook.react.bridge.WritableNativeArray;
 import com.facebook.react.bridge.WritableNativeMap;
 import com.facebook.react.modules.core.DeviceEventManagerModule;
+import com.github.douglasjunior.bluetoothclassiclibrary.BluetoothConfiguration;
 import com.github.douglasjunior.bluetoothclassiclibrary.BluetoothService;
 import com.github.douglasjunior.bluetoothclassiclibrary.BluetoothStatus;
 import com.github.douglasjunior.bluetoothclassiclibrary.BluetoothWriter;
@@ -74,16 +77,23 @@ public class CoreModule extends ReactContextBaseJavaModule implements BluetoothS
         Log.d(TAG, "config: " + config);
         if (!validateBluetoothAdapter(promise)) return;
 
-        BluetoothService.BluetoothConfiguration bluetoothConfig = new BluetoothService.BluetoothConfiguration();
+        BluetoothConfiguration bluetoothConfig = new BluetoothConfiguration();
         bluetoothConfig.context = getReactApplicationContext();
         bluetoothConfig.bluetoothServiceClass = mBluetoothServiceClass;
         bluetoothConfig.deviceName = config.getString("deviceName");
         bluetoothConfig.characterDelimiter = config.getString("characterDelimiter").charAt(0);
         bluetoothConfig.bufferSize = config.getInt("bufferSize");
-        bluetoothConfig.uuid = UUID.fromString(config.getString("uuid"));
+        if (config.hasKey("uuid"))
+            bluetoothConfig.uuid = UUID.fromString(config.getString("uuid"));
+        if (config.hasKey("uuidService"))
+            bluetoothConfig.uuidService = UUID.fromString(config.getString("uuidService"));
+        if (config.hasKey("uuidCharacteristic"))
+            bluetoothConfig.uuidCharacteristic = UUID.fromString(config.getString("uuidCharacteristic"));
+        if (config.hasKey("transport"))
+            bluetoothConfig.transport = config.getInt("transport");
         bluetoothConfig.callListenersInMainThread = false;
 
-        BluetoothService.setDefaultConfiguration(bluetoothConfig);
+        BluetoothService.init(bluetoothConfig);
         mService = BluetoothService.getDefaultInstance();
         mService.setOnScanCallback(this);
         mService.setOnEventCallback(this);
@@ -115,11 +125,13 @@ public class CoreModule extends ReactContextBaseJavaModule implements BluetoothS
         promise.resolve(null);
     }
 
-    public void connect(ReadableMap device, final Promise promise) {
+    public void connect(ReadableMap device, final Promise promise) throws InterruptedException {
         Log.d(TAG, "connect: " + device);
+
         if (!validateServiceConfig(promise)) return;
 
         String address = device.getString("address");
+        String name = device.getString("name");
 
         if (!mBluetoothAdapter.checkBluetoothAddress(address)) {
             promise.reject(new IllegalArgumentException("Invalid device address: " + address));
@@ -130,7 +142,16 @@ public class CoreModule extends ReactContextBaseJavaModule implements BluetoothS
 
         mService.connect(btDevice);
 
-        promise.resolve(null);
+        Thread.sleep(2000);
+        while (mService.getStatus() == BluetoothStatus.CONNECTING) {
+            Thread.yield();
+        }
+
+        if (mService.getStatus() == BluetoothStatus.CONNECTED) {
+            promise.resolve(wrapDevice(btDevice, 0));
+        } else {
+            promise.reject(new IllegalStateException("Unable to connect to: " + name + " [" + address + "]"));
+        }
     }
 
     public void getStatus(final Promise promise) {
@@ -209,9 +230,8 @@ public class CoreModule extends ReactContextBaseJavaModule implements BluetoothS
         WritableNativeArray devices = new WritableNativeArray();
 
         for (BluetoothDevice btDevice : mBluetoothAdapter.getBondedDevices()) {
-            WritableNativeMap device = new WritableNativeMap();
-            device.putString("address", btDevice.getAddress());
-            device.putString("name", btDevice.getName());
+            WritableNativeMap device = wrapDevice(btDevice, 0);
+            devices.pushMap(device);
         }
 
         promise.resolve(devices);
@@ -258,16 +278,24 @@ public class CoreModule extends ReactContextBaseJavaModule implements BluetoothS
     private boolean validateServiceConfig(Promise promise) {
         if (mService == null) {
             promise.reject(new IllegalStateException("BluetoothService has not been configured. " +
-                    "Call ReactNativeEasyBluetooth.config(config)."));
+                    "Call ReactNativeEasyBluetooth.init(config)."));
             return false;
         }
         return true;
     }
 
-    private WritableNativeMap wrapDevice(BluetoothDevice bluetoothDevice) {
+    private WritableNativeMap wrapDevice(BluetoothDevice bluetoothDevice, int RSSI) {
         WritableNativeMap device = new WritableNativeMap();
         device.putString("address", bluetoothDevice.getAddress());
         device.putString("name", bluetoothDevice.getName());
+        device.putInt("rssi", RSSI);
+        WritableArray uuids = new WritableNativeArray();
+        if (bluetoothDevice.getUuids() != null) {
+            for (ParcelUuid uuid : bluetoothDevice.getUuids()) {
+                uuids.pushString(uuid.toString());
+            }
+        }
+        device.putArray("uuids", uuids);
         return device;
     }
 
@@ -302,9 +330,9 @@ public class CoreModule extends ReactContextBaseJavaModule implements BluetoothS
     @Override
     public void onDeviceDiscovered(BluetoothDevice bluetoothDevice, int RSSI) {
         if (mDevicesFound != null) {
-            mDevicesFound.pushMap(wrapDevice(bluetoothDevice));
+            mDevicesFound.pushMap(wrapDevice(bluetoothDevice, RSSI));
         }
-        sendEventDeviceFound(wrapDevice(bluetoothDevice));
+        sendEventDeviceFound(wrapDevice(bluetoothDevice, RSSI));
     }
 
     @Override

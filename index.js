@@ -28,19 +28,19 @@ import { NativeModules, DeviceEventEmitter } from 'react-native';
 const ReactNativeEasyBluetooth = NativeModules.ReactNativeEasyBluetooth;
 
 ReactNativeEasyBluetooth.addOnDeviceFoundListener = function(eventCallback) {
-    DeviceEventEmitter.addListener(ReactNativeEasyBluetooth.EVENT_DEVICE_FOUND, eventCallback);
+    return DeviceEventEmitter.addListener(ReactNativeEasyBluetooth.EVENT_DEVICE_FOUND, eventCallback);
 }
 
 ReactNativeEasyBluetooth.addOnDataReadListener = function(eventCallback) {
-    DeviceEventEmitter.addListener(ReactNativeEasyBluetooth.EVENT_DATA_READ, eventCallback);
+    return DeviceEventEmitter.addListener(ReactNativeEasyBluetooth.EVENT_DATA_READ, eventCallback);
 }
 
 ReactNativeEasyBluetooth.addOnStatusChangeListener = function(eventCallback) {
-    DeviceEventEmitter.addListener(ReactNativeEasyBluetooth.EVENT_STATUS_CHANGE, eventCallback);
+    return DeviceEventEmitter.addListener(ReactNativeEasyBluetooth.EVENT_STATUS_CHANGE, eventCallback);
 }
 
 ReactNativeEasyBluetooth.addOnDeviceNameListener = function(eventCallback) {
-    DeviceEventEmitter.addListener(ReactNativeEasyBluetooth.EVENT_DEVICE_NAME, eventCallback);
+    return DeviceEventEmitter.addListener(ReactNativeEasyBluetooth.EVENT_DEVICE_NAME, eventCallback);
 }
 
 module.exports = ReactNativeEasyBluetooth;
