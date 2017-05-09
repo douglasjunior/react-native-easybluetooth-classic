@@ -73,7 +73,7 @@ public class CoreModule extends ReactContextBaseJavaModule implements BluetoothS
                  REACT METHODS
     ==================================== */
 
-    public void config(ReadableMap config, Promise promise) {
+    public void init(ReadableMap config, Promise promise) {
         Log.d(TAG, "config: " + config);
         if (!validateBluetoothAdapter(promise)) return;
 

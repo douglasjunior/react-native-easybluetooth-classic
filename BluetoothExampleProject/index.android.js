@@ -95,15 +95,7 @@ export default class BluetoothExampleProject extends Component {
         return ReactNativeEasyBluetooth.connect(device);
       })
       .then(() => {
-        console.log("Connecting to " + device);
-        return ReactNativeEasyBluetooth.writeIntArray([0x1b, 0x61, 0x1]);
-      })
-      .then(() => {
-        console.log("Escreveu os bytes");
-        return ReactNativeEasyBluetooth.writeln("Foi!\n\n\n");
-      })
-      .then(() => {
-        console.log("Escreveu os dados");
+        console.log("Connected!");
       })
       .catch((ex) => {
         console.warn(ex);
@@ -112,12 +104,12 @@ export default class BluetoothExampleProject extends Component {
 
   onWriteClick() {
     ReactNativeEasyBluetooth.writeln("Works in React Native!\n\n")
-    .then(() => {
-      console.log("Writing...")
-    })
-    .catch((ex) => {
-      console.warn(ex);
-    })
+      .then(() => {
+        console.log("Writing...")
+      })
+      .catch((ex) => {
+        console.warn(ex);
+      })
   }
 
   renderListView() {
