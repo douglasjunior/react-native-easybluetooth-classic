@@ -10,6 +10,7 @@ import android.util.Log;
 import com.facebook.react.bridge.Promise;
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
+import com.facebook.react.bridge.ReadableArray;
 import com.facebook.react.bridge.ReadableMap;
 import com.facebook.react.bridge.WritableNativeArray;
 import com.facebook.react.bridge.WritableNativeMap;
@@ -70,7 +71,7 @@ public class CoreModule extends ReactContextBaseJavaModule implements BluetoothS
     ==================================== */
 
     public void config(ReadableMap config, Promise promise) {
-        Log.d(TAG, "config: " + config + " - " + promise);
+        Log.d(TAG, "config: " + config);
         if (!validateBluetoothAdapter(promise)) return;
 
         BluetoothService.BluetoothConfiguration bluetoothConfig = new BluetoothService.BluetoothConfiguration();
@@ -115,7 +116,7 @@ public class CoreModule extends ReactContextBaseJavaModule implements BluetoothS
     }
 
     public void connect(ReadableMap device, final Promise promise) {
-        Log.d(TAG, "connect: " + device + " - " + promise);
+        Log.d(TAG, "connect: " + device);
         if (!validateServiceConfig(promise)) return;
 
         String address = device.getString("address");
@@ -140,7 +141,7 @@ public class CoreModule extends ReactContextBaseJavaModule implements BluetoothS
     }
 
     public void write(String data, Promise promise) {
-        Log.d(TAG, "write: " + data + " - " + promise);
+        Log.d(TAG, "write: " + data);
         if (!validateServiceConfig(promise)) return;
 
         mWriter.write(data);
@@ -148,10 +149,24 @@ public class CoreModule extends ReactContextBaseJavaModule implements BluetoothS
     }
 
     public void writeln(String data, Promise promise) {
-        Log.d(TAG, "writeln: " + data + " - " + promise);
+        Log.d(TAG, "writeln: " + data);
         if (!validateServiceConfig(promise)) return;
 
         mWriter.writeln(data);
+        promise.resolve(null);
+    }
+
+    public void writeIntArray(ReadableArray data, Promise promise) {
+        Log.d(TAG, "writeIntArray: " + data);
+        if (!validateServiceConfig(promise)) return;
+
+        byte[] bytes = new byte[data.size()];
+
+        for (int i = 0; i < data.size(); i++) {
+            bytes[i] = (byte) data.getInt(i);
+        }
+
+        mService.write(bytes);
         promise.resolve(null);
     }
 

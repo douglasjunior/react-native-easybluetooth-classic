@@ -3,6 +3,7 @@ package io.github.douglasjunior.ReactNativeEasyBluetooth.classic;
 import com.facebook.react.bridge.Promise;
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactMethod;
+import com.facebook.react.bridge.ReadableArray;
 import com.facebook.react.bridge.ReadableMap;
 import com.github.douglasjunior.bluetoothclassiclibrary.BluetoothClassicService;
 
@@ -49,6 +50,12 @@ public class ReactNativeEasyBluetoothModule extends CoreModule {
     @Override
     public void writeln(String data, Promise promise) {
         super.writeln(data, promise);
+    }
+
+    @ReactMethod
+    @Override
+    public void writeIntArray(ReadableArray data, Promise promise) {
+        super.writeIntArray(data, promise);
     }
 
     @ReactMethod

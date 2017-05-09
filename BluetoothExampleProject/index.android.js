@@ -96,6 +96,14 @@ export default class BluetoothExampleProject extends Component {
       })
       .then(() => {
         console.log("Connecting to " + device);
+        return ReactNativeEasyBluetooth.writeIntArray([0x1b, 0x61, 0x1]);
+      })
+      .then(() => {
+        console.log("Escreveu os bytes");
+        return ReactNativeEasyBluetooth.writeln("Foi!\n\n\n");
+      })
+      .then(() => {
+        console.log("Escreveu os dados");
       })
       .catch((ex) => {
         console.warn(ex);
