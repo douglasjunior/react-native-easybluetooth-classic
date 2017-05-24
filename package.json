@@ -1,11 +1,11 @@
 {
-	"name": "react-native-easy-bluetooth",
+	"name": "easy-bluetooth-classic",
 	"version": "1.0.0",
-	"description": "An React-Native wrapper for AndroidBluetoothLibrary <https://github.com/douglasjunior/AndroidBluetoothLibrary>",
+	"description": "",
 	"private": false,
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/douglasjunior/react-native-easy-bluetooth.git"
+		"url": "https://github.com/douglasjunior/react-native-easybluetooth-classic.git"
 	},
 	"keywords": [
 		"react-native",
@@ -16,21 +16,24 @@
 	"author": "Douglas Nassif Roma Junior",
 	"license": "MIT",
 	"bugs": {
-		"url": "https://github.com/douglasjunior/react-native-easy-bluetooth/issues"
+		"url": "https://github.com/douglasjunior/react-native-easybluetooth-classice/issues"
 	},
-	"homepage": "https://github.com/douglasjunior/react-native-easy-bluetooth",
+	"homepage": "https://github.com/douglasjunior/react-native-easybluetooth-classic",
 	"main": "index.js",
 	"scripts": {
 		"start": "node node_modules/react-native/local-cli/cli.js start",
 		"test": "jest"
 	},
-	"dependencies": {},
+	"dependencies": {
+		"easy-bluetooth-core": "file:../EasyBluetoothCore/"
+	},
 	"devDependencies": {
-		"babel-jest": "19.0.0",
-		"babel-preset-react-native": "1.9.1",
-		"jest": "19.0.2",
+		"babel-jest": "20.0.3",
+		"babel-preset-react-native": "1.9.2",
+		"jest": "20.0.3",
 		"react-test-renderer": "16.0.0-alpha.6",
-		"react-native": "^0.40.0"
+		"react": "16.0.0-alpha.6",
+		"react-native": "0.44.0"
 	},
 	"jest": {
 		"preset": "react-native"

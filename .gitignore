@@ -22,6 +22,11 @@ DerivedData
 *.xcuserstate
 project.xcworkspace
 
+# Eclipse
+.project
+.settings
+.classpath
+
 # Android/IntelliJ
 #
 build/
