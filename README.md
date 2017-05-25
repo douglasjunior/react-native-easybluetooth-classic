@@ -1,3 +1,9 @@
+# Deprecated
+
+This repository is **deprecated**. If you are look for a library that implements bluetooth in React Native, please visit [react-native-easybluetooth-classic](https://github.com/douglasjunior/react-native-easybluetooth-classic) or [react-native-easybluetooth-le](https://github.com/douglasjunior/react-native-easybluetooth-le).
+
+----
+
 # react-native-easy-bluetooth
 An React-Native wrapper for [AndroidBluetoothLibrary](https://github.com/douglasjunior/AndroidBluetoothLibrary)
 
