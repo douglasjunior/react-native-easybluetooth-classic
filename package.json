@@ -16,7 +16,7 @@
 	"author": "Douglas Nassif Roma Junior",
 	"license": "MIT",
 	"bugs": {
-		"url": "https://github.com/douglasjunior/react-native-easybluetooth-classice/issues"
+		"url": "https://github.com/douglasjunior/react-native-easybluetooth-classic/issues"
 	},
 	"homepage": "https://github.com/douglasjunior/react-native-easybluetooth-classic",
 	"main": "index.js",
