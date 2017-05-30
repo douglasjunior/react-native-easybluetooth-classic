@@ -25,7 +25,7 @@
  */
 import { NativeModules, DeviceEventEmitter } from 'react-native';
 
-const EasyBluetooth = NativeModules.EasyBluetooth;
+const EasyBluetooth = NativeModules.EasyBluetoothClassic;
 
 EasyBluetooth.addOnDeviceFoundListener = function (eventCallback) {
     return DeviceEventEmitter.addListener(EasyBluetooth.EVENT_DEVICE_FOUND, eventCallback);

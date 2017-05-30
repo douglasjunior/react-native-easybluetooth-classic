@@ -41,12 +41,12 @@ import io.github.douglasjunior.ReactNativeEasyBluetooth.core.CoreModule;
  * Created by douglas on 24/05/17.
  */
 
-public class EasyBluetoothPackage implements ReactPackage {
+public class ClassicPackage implements ReactPackage {
 
     @Override
     public List<NativeModule> createNativeModules(ReactApplicationContext reactContext) {
         List<NativeModule> modules = new ArrayList<>();
-        modules.add(new CoreModule(reactContext, BluetoothClassicService.class));
+        modules.add(new CoreModule(reactContext, "EasyBluetoothClassic", BluetoothClassicService.class));
         return modules;
     }
 

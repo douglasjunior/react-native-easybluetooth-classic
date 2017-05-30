@@ -1,3 +1,0 @@
-[submodule "android/src/main/java/io/github/douglasjunior/ReactNativeEasyBluetooth/core"]
-	path = android/src/main/java/io/github/douglasjunior/ReactNativeEasyBluetooth/core
-	url = https://github.com/douglasjunior/react-native-easybluetooth-core.git
