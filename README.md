@@ -4,7 +4,7 @@
 [![npm version](https://img.shields.io/npm/v/easy-bluetooth-classic.svg)](https://www.npmjs.com/package/easy-bluetooth-classic)
 [![npm downloads](https://img.shields.io/npm/dt/easy-bluetooth-classic.svg)](#install)
 
-A Library for easy implementation of Serial Bluetooth Classic on React Native.
+A Library for easy implementation of Serial Bluetooth Classic on React Native. 💙
 
 ## Requirements
 
