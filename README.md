@@ -72,6 +72,44 @@ import EasyBluetooth from 'easy-bluetooth-classic';
       })
 ```
 
+### Events
+
+```javascript
+componentWillMount() {
+    this.onDeviceFoundEvent = EasyBluetooth.addOnDeviceFoundListener(this.onDeviceFound.bind(this));
+    this.onStatusChangeEvent = EasyBluetooth.addOnStatusChangeListener(this.onStatusChange.bind(this));
+    this.onDataReadEvent = EasyBluetooth.addOnDataReadListener(this.onDataRead.bind(this));
+    this.onDeviceNameEvent = EasyBluetooth.addOnDeviceNameListener(this.onDeviceName.bind(this));
+}
+...
+  onDeviceFound(device) {
+    console.log("onDeviceFound");
+    console.log(device);
+  }
+
+  onStatusChange(status) {
+    console.log("onStatusChange");
+    console.log(status);
+  }
+
+  onDataRead(data) {
+    console.log("onDataRead");
+    console.log(data);
+  }
+  
+  onDeviceName(name) {
+    console.log("onDeviceName");
+    console.log(name);
+  }
+...
+componentWillUnmount() {
+    this.onDeviceFoundEvent.remove();
+    this.onStatusChangeEvent.remove();
+    this.onDataReadEvent.remove();
+    this.onDeviceNameEvent.remove();
+}
+```
+
 ## Install 
 
 1. Run in console:
