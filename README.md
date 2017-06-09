@@ -9,6 +9,7 @@ A Library for easy implementation of Serial Bluetooth Classic on React Native. ð
 ## Requirements
 
 - Android 4.1 (API 16)
+- React Native >= 0.40.0
 
 ## Use
 
