@@ -6,6 +6,8 @@
 
 A Library for easy implementation of Serial Bluetooth Classic on React Native. 💙
 
+_Looking for **Bluetooth Low Energy**? [Look here](https://github.com/douglasjunior/react-native-easybluetooth-le)._
+
 ## Requirements
 
 - Android 4.1 (API 16)
