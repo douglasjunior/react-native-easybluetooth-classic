@@ -1,6 +1,6 @@
 {
 	"name": "easy-bluetooth-classic",
-	"version": "1.0.3",
+	"version": "1.0.4",
 	"description": "A Library for easy implementation of Serial Bluetooth Classic on React Native. 💙",
 	"private": false,
 	"repository": {
